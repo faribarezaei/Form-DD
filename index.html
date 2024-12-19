@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application for Direct Deposit</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 900px;
+            margin: 20px auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+         <!-- Header -->
+         <div class="form-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ontario_Coat_of_Arms_%28black_and_white%29.svg/1200px-Ontario_Coat_of_Arms_%28black_and_white%29.svg.png"
+                 alt="Ontario Logo" style="max-width: 80px;">
+            <h1>Application for Direct Deposit(s)</h1>
+        </div>
+ 
+        <hr>
+ 
+        <!-- Instructions Section -->
+        <div class="instructions" style="
+        padding: 10px; 
+        margin: 0; 
+        font-family: Arial, sans-serif; 
+        line-height: 1.6; 
+        color: #333;
+    ">
+        <h2 style="margin-bottom: 10px; font-size: 1.2rem; font-weight: bold;">
+            Instructions to Employees
+        </h2>
+        <ul style="margin-top: 0; padding-left: 20px;">
+            <li>Use this form to provide or update the bank account(s) information that your net pay will be deposited into.</li>
+            <li>Complete the form accurately. Incorrect information could cause delays in processing.</li>
+            <li>
+                Submit the completed and signed form by email to your Pay and Benefits Service Centre. For instructions and other options, see the Document Submission Guide on the 
+                <a href="https://intra.ontario.ca/ops/pay-and-benefots-service-centre-list" target="_blank" style="color: #0073e6; text-decoration: none;">Pay and Benefits webpage</a>
+                <span style="color: red;">(link does not work)</span>.
+            </li>
+            
+            <li>
+                <strong>Note:</strong> If you are a new hire/rehire, send your completed and signed form to your manager. This document is part of your hire package and will be processed with the other hiring package documents.
+            </li>
+        </ul>
+        <h3 style="margin-top: 15px; font-size: 1rem; font-weight: bold;">
+            Questions? Contact the OPS Service Centre
+        </h3>
+        <p style="margin: 5px 0;">Telephone: (within Greater Toronto Area) <strong>416-915-7772</strong> / (toll free) <strong>1-888-996-7772</strong></p>
+        <p style="margin: 5px 0;">Technology Services (TTY): <strong>1-866-310-7259</strong></p>
+        <p style="margin: 5px 0;">Email: <a href="mailto:opssc@ontario.ca" style="color: #0073e6; text-decoration: none;">opssc@ontario.ca</a></p>
+    </div>
+        <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;">
+        <!-- Questions -->
+          <!-- Questions Section -->
+          <h2 style="color: red;">What topic here?</h2>
+        <p><strong>1.</strong> Are you setting up direct deposit for the first time or updating an existing one?</p>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> New Application</label>
+            <label><input type="checkbox"> Update Existing Direct Deposit</label> <span style="color: red;">(Should we have this question with three options as previous form or two, why?)</span>.
+        </div>
+        <p><strong>2.</strong> How many direct deposits do you want to set up?</p> <span style="color: red;">(Should we have all 10 accounts here in this form? then it will be a long form)</span>.
+        <select id="directDepositDropdown" onchange="toggleSectionB()">
+            <option value="0">Select...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+         <!-- Section A: Employee Identification -->
+         <h2 style="background-color: #f0f0f0; color: #333; padding: 5px; margin: 20px 0 0 0;">
+            Section A – Employee Identification
+        </h2>
+        
+         <table> <span style="color: red;">(I added Email. Based on Clelia's comment, is this ok?)</span>.
+             <tr>
+                 <td colspan="3">WIN ID</td>
+             </tr>
+             <tr>
+                 <td colspan="3"><input type="text" placeholder="Enter WIN ID"></td>
+             </tr>
+             <tr>
+                 <td>Last Name<br><input type="text" placeholder="Enter Last Name"></td>
+                 <td>First Name<br><input type="text" placeholder="Enter First Name"></td>
+                 <td>Middle Initial<br><input type="text" placeholder="M"></td>
+             </tr>
+             <tr>
+                 <td>Business Unit<br><input type="text" placeholder="Enter Business Unit"></td>
+                 <td>Branch/Regional Office<br><input type="text" placeholder="Enter Branch/Office"></td>
+                 <td></td>
+             </tr>
+             <tr>
+                 <th colspan="3">Telephone Numbers</th>
+             </tr>
+             <tr>
+                 <td>Business<br><input type="tel" placeholder="Enter Business Phone"></td>
+                 <td>Home<br><input type="tel" placeholder="Enter Home Phone"></td>
+                 <td>Cell<br><input type="tel" placeholder="Enter Cell Phone"></td>
+             </tr>
+             <tr>
+                 <td colspan="3">Email<br><input type="email" placeholder="Enter Email"></td>
+             </tr>
+         </table>
+
+        <!-- Section B: Direct Deposit Information for 1 Account -->
+        <div id="sectionB" class="section-b hidden">
+            <h2 style="background-color: #f0f0f0; color: #333; padding: 5px; margin: 20px 0 0 0;">
+                Section B – Direct Deposit Information
+            </h2>
+            
+            <span style="color: red;">(I removed Acount Holder1 and 2 info, is it ok?)</span>.
+            <p>Attach a blank personal cheque with VOID written on it or a deposit slip.</p>
+            <p class="note">Note: If you do not have a void personal cheque or deposit slip, ensure the information is accurate by confirming with your financial institution.</p>
+            <p class="note">Note: You must be the account holder for all bank accounts you identify. If any bank account is a joint account, you must be one of the account holders.</p>
+
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType1"> Chequing</label>
+                <label><input type="radio" name="accountType1"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada</p>
+            </div>
+
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+            
+
+            <label>Net Pay Deposit Allocation</label>
+            <input type="text" value="Full Balance" readonly>
+            <p class="note">Note: When you only have one bank account set up for direct deposit, 100% of your net pay will be deposited into this account.</p>
+        </div>
+
+        <!-- Section B2: Direct Deposit Information for 2 Accounts -->
+        <div id="sectionB2" class="section-b hidden">
+            <h2 style="background-color: #f0f0f0; color: #333; padding: 5px; margin: 20px 0 0 0;">
+                Section B – Direct Deposit Information
+            </h2>
+            <p>Attach a blank personal cheque with VOID written on it or a deposit slip.</p>
+            <p class="note">Note: If you do not have a void personal cheque or deposit slip, ensure the information is accurate by confirming with your financial institution.</p>
+            <p class="note">Note: You must be the account holder for all bank accounts you identify. If any bank account is a joint account, you must be one of the account holders.</p>
+            <!-- First Account -->
+            <h3>Direct Deposit Information 1</h3>
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType1"> Chequing</label>
+                <label><input type="radio" name="accountType1"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada.
+                    <span style="color: red;">This description will appear on your pay stub(Should we add this in previous section too?)</span>.
+                </p>
+            </div>
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <label>Net Pay Deposit Allocation Type</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="allocationType1" onclick="showAllocationField('amount')"> Amount
+                </label>
+                <label>
+                    <input type="radio" name="allocationType1" onclick="showAllocationField('percentage')"> Percentage
+                </label>
+            </div>
+            
+            <!-- Dynamic Allocation Label and Input -->
+            <div id="allocationField" class="hidden">
+                <label id="allocationLabel"></label>
+                <input type="text" id="allocationInput1">
+            </div>
+            
+            <p class="note">Note: You must allocate your net pay across all direct deposit bank accounts as either a percentage of your net pay or an amount of your net pay. Combinations are not possible.</p>
+
+            <!-- Second Account -->
+            <h3>Direct Deposit Information 2</h3>
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType2"> Chequing</label>
+                <label><input type="radio" name="accountType2"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada.
+                    <span style="color: red;">This description will appear on your pay stub(Should we add this in previous section too?)</span>.
+                </p>  
+            </div>
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <label>Net Pay Deposit Allocation</label>
+            <input type="text" id="secondAllocationType" readonly>
+            <input type="text" value="Amount\Percentage to be deposited to this account : Remaining Balance" readonly>
+        </div>
+
+    <!--------->
+         <!-- Section B2: Direct Deposit Information for 3 Accounts -->
+         <div id="sectionB3" class="section-b hidden">
+            <h2 style="background-color: #f0f0f0; color: #333; padding: 5px; margin: 20px 0 0 0;">
+                Section B – Direct Deposit Information
+            </h2>
+            <p>Attach a blank personal cheque with VOID written on it or a deposit slip.</p>
+            <p class="note">Note: If you do not have a void personal cheque or deposit slip, ensure the information is accurate by confirming with your financial institution.</p>
+            <p class="note">Note: You must be the account holder for all bank accounts you identify. If any bank account is a joint account, you must be one of the account holders.</p>
+            <!-- First Account -->
+            <h3>Direct Deposit Information 1</h3>
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType1"> Chequing</label>
+                <label><input type="radio" name="accountType1"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada.
+                    <span style="color: red;">This description will appear on your pay stub(Should we add this in previous section too?)</span>.
+                </p>
+            </div>
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+            <label>Net Pay Deposit Allocation</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="allocationType1" onclick="showAllocationField('amount')"> Amount
+                </label>
+                <label>
+                    <input type="radio" name="allocationType1" onclick="showAllocationField('percentage')"> Percentage
+                </label>
+            </div>
+            <!-- Dynamic Allocation Label and Input for Account 1 -->
+<div id="allocationField" class="hidden">
+    <label id="allocationLabel"></label>
+    <input type="text" id="allocationInput1">
+</div>
+
+           <!-- Dynamic Allocation Label and Input for Account 2 -->
+<div id="allocationField2" class="hidden">
+    <label id="allocationLabel2"></label>
+    <input type="text" id="allocationInput2">
+</div>
+<input type="text"  id="secondAllocationType" value="Dependig seletion in Account 1 'Amount' or 'Percentage' will appear" readonly>
+<input value="Enter Amount or Percent" type="text">
+            <!--Second Account-->
+            <h3>Direct Deposit Information 2</h3>
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType1"> Chequing</label>
+                <label><input type="radio" name="accountType1"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada.
+                    <span style="color: red;">This description will appear on your pay stub(Should we add this in previous section too?)</span>.
+                </p>
+            </div>
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+           
+            
+          <!-- Dynamic Allocation Label and Input for Account 2 -->
+          <label>Net Pay Deposit Allocation</label>
+          <input type="text"  id="secondAllocationType" value="Dependig seletion in Account 1 'Amount' or 'Percentage' will appear" readonly>
+          <input value="Enter Amount or Percent" type="text">
+         
+         
+            <!-- Third Account -->
+            <h3>Direct Deposit Information 3</h3>
+            <label>Type of Account</label>
+            <div class="radio-group">
+                <label><input type="radio" name="accountType2"> Chequing</label>
+                <label><input type="radio" name="accountType2"> Savings</label>
+                <p class="note">Note: You can deposit your net pay to a savings or chequing account with any financial institution in Canada.
+                    <span style="color: red;">This description will appear on your pay stub(Should we add this in previous section too?)</span>.
+                </p>
+            </div>
+            <table>
+                <tr>
+                    <td>Institution Number<br><input type="text"></td>
+                    <td>Branch Number<br><input type="text"></td>
+                    <td>Account Number<br><input type="text"></td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">Name of Financial Institution<br><input type="text"></td>
+                    <td>Branch Name<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align: left; font-weight: bold; padding-top: 10px;">Branch Address</th>
+                </tr>
+                <tr>
+                    <td>Unit Number<br><input type="text"></td>
+                    <td>Street Number and Name<br><input type="text"></td>
+                    <td>City/Town<br><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Province<br>
+                        <select>
+                            <option>Select Province</option>
+                            <option>ON</option><option>QC</option><option>BC</option><option>AB</option>
+                        </select>
+                    </td>
+                    <td>Postal Code<br><input type="text"></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <label>Net Pay Deposit Allocation</label>
+            <input type="text" id="thirdAllocationType" value="Dependig seletion in Account 1 'Amount' or 'Percentage' will appear"readonly>
+
+
+            <input type="text" value="Remaining Balance" readonly>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      function toggleSectionB() {
+    const dropdown = document.getElementById("directDepositDropdown");
+    const sectionB = document.getElementById("sectionB");
+    const sectionB2 = document.getElementById("sectionB2");
+    const sectionB3 = document.getElementById("sectionB3");
+
+    // Hide all sections first
+    sectionB.classList.add("hidden");
+    sectionB2.classList.add("hidden");
+    sectionB3.classList.add("hidden");
+
+    // Show the relevant section based on the dropdown value
+    if (dropdown.value === "1") {
+        sectionB.classList.remove("hidden");
+    } else if (dropdown.value === "2") {
+        sectionB2.classList.remove("hidden");
+    } else if (dropdown.value === "3") {
+        sectionB3.classList.remove("hidden");
+    }
+}
+
+function showAllocationField(type) {
+    // Handle Account 1 input and label
+    const allocationField1 = document.getElementById("allocationField");
+    const allocationLabel1 = document.getElementById("allocationLabel");
+    const allocationInput1 = document.getElementById("allocationInput1");
+
+    // Handle Account 2 Net Pay Deposit Allocation
+    const secondAllocationType = document.getElementById("secondAllocationType");
+
+    // Handle Account 3 Net Pay Deposit Allocation
+    const thirdAllocationType = document.getElementById("thirdAllocationType");
+
+    // Make the dynamic input for Account 1 visible
+    allocationField1.classList.remove("hidden");
+
+    // Update dynamic label and placeholder for Account 1
+    if (type === "amount") {
+        allocationLabel1.textContent = "Amount to be deposited to this account";
+        allocationInput1.placeholder = "Enter Amount";
+    } else if (type === "percentage") {
+        allocationLabel1.textContent = "Percentage to be deposited to this account";
+        allocationInput1.placeholder = "Enter Percentage";
+    }
+
+    // Update Account 2 and Account 3 Net Pay Deposit Allocation fields
+    if (secondAllocationType) {
+        secondAllocationType.value = (type === "amount") ? "Amount" : "Percentage";
+    }
+
+    if (thirdAllocationType) {
+        thirdAllocationType.value = (type === "amount") ? "Amount" : "Percentage";
+    }
+}
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
